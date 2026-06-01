@@ -1,0 +1,21 @@
+# Virtual Environment
+venv/
+
+# Environment Variables
+.env
+
+# Database
+database/users.db
+
+# Uploads
+uploads/
+
+# Vector Database
+models/vector_db/
+
+# Python Cache
+__pycache__/
+*/__pycache__/
+*.pyc
+*.pyo
+*.pyd
