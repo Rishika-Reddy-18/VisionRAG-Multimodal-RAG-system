@@ -1,37 +1,36 @@
-# VisionRAG- Multimodal RAG System with Voice, OCR, Audio & Video Intelligence
+# VisionRAG – Multimodal Retrieval-Augmented Generation System
 
 ## Overview
 
-The Multimodal Retrieval-Augmented Generation (RAG) System is an AI-powered application designed to extract, process, retrieve, and answer questions from multiple types of data sources including PDF documents, images, audio recordings, and video files. The system combines modern Natural Language Processing (NLP), Optical Character Recognition (OCR), Speech Recognition, and Retrieval-Augmented Generation techniques to provide accurate and context-aware responses.
+VisionRAG is a Multimodal Retrieval-Augmented Generation (RAG) system that enables users to upload and interact with PDF documents, images, audio recordings, and video files through natural language queries. The system combines OCR, speech recognition, vector search, and Large Language Models (LLMs) to provide context-aware and accurate responses.
 
-Unlike traditional chatbots that rely solely on pre-trained knowledge, this system retrieves information directly from user-uploaded content, ensuring that responses are grounded in the provided documents and media.
-
----
-
-# Problem Statement
-
-Organizations and individuals often store important information across different formats such as PDFs, scanned images, voice recordings, and videos. Searching through these files manually is time-consuming and inefficient.
-
-The objective of this project is to develop a unified AI assistant capable of understanding multiple content formats and answering user queries based on uploaded data.
+Unlike traditional chatbots that rely solely on pre-trained knowledge, VisionRAG retrieves information directly from user-uploaded content, reducing hallucinations and improving factual accuracy.
 
 ---
 
-# Objectives
+## Problem Statement
 
-* Extract text from PDF documents.
-* Extract text from images using OCR.
-* Convert speech from audio files into text.
-* Extract audio from videos and transcribe it.
-* Support microphone-based voice queries.
-* Clean and preprocess extracted content.
-* Retrieve relevant information efficiently.
-* Generate context-aware answers using Large Language Models (LLMs).
-* Maintain chat history for better user interaction.
-* Provide secure authentication and administration features.
+Information is often stored across multiple formats such as documents, scanned images, audio recordings, and videos. Searching through these sources manually is time-consuming and inefficient.
+
+VisionRAG addresses this challenge by providing a unified AI-powered assistant capable of understanding, retrieving, and answering questions from multimodal data sources.
 
 ---
 
-# Key Features
+## Objectives
+
+* Extract text from PDF documents
+* Perform OCR on images
+* Convert audio speech into text
+* Extract and transcribe audio from videos
+* Support microphone-based voice input
+* Retrieve relevant information efficiently
+* Generate context-aware answers using LLMs
+* Maintain conversational chat history
+* Provide authentication and administration features
+
+---
+
+## Key Features
 
 ### User Authentication
 
@@ -49,14 +48,14 @@ The objective of this project is to develop a unified AI assistant capable of un
 ### PDF Processing
 
 * Upload PDF documents
-* Extract textual content
-* Process multi-page documents
+* Extract text from multi-page PDFs
+* Question answering on document content
 
 ### OCR Processing
 
-* Upload Images
-* Extract text from scanned documents
-* Support image-based question answering
+* Upload images
+* Extract text using OCR
+* Analyze scanned documents
 
 ### Audio Intelligence
 
@@ -67,15 +66,15 @@ The objective of this project is to develop a unified AI assistant capable of un
 ### Video Intelligence
 
 * Upload video files
-* Extract audio from videos
+* Extract audio
 * Generate transcripts
 * Question answering based on video content
 
 ### Voice Input
 
-* Built-in microphone support
-* Record voice directly within the application
-* Convert voice queries into text automatically
+* Microphone-based recording
+* Speech-to-text conversion
+* Hands-free interaction
 
 ### Chat System
 
@@ -85,312 +84,321 @@ The objective of this project is to develop a unified AI assistant capable of un
 
 ### Retrieval-Augmented Generation
 
-* Intelligent document retrieval
-* Context-based answer generation
-* Reduced hallucination compared to standalone LLMs
+* Vector-based retrieval
+* Context-aware response generation
+* Reduced hallucinations
 
 ---
 
-# System Architecture
+## System Architecture
 
-1. User uploads data.
-2. System extracts text based on file type.
-3. Text is cleaned and preprocessed.
-4. Relevant information is retrieved.
-5. Retrieved context is sent to the language model.
-6. Model generates accurate answers.
-7. Response is displayed to the user.
+User Upload
+
+↓
+
+Text Extraction (PDF / OCR / Audio / Video)
+
+↓
+
+Text Cleaning & Preprocessing
+
+↓
+
+Text Chunking
+
+↓
+
+Embedding Generation
+
+↓
+
+FAISS Vector Database
+
+↓
+
+Retriever
+
+↓
+
+LLM Response Generation
+
+↓
+
+User Interface
 
 ---
 
-# Workflow
+## Workflow
 
 User Input
+
 ↓
+
 Document/Image/Audio/Video Upload
+
 ↓
+
 Text Extraction
+
 ↓
+
 Text Cleaning
+
 ↓
-Context Retrieval
+
+Vector Embedding Generation
+
 ↓
-RAG Pipeline
+
+FAISS Storage
+
 ↓
+
+Similarity Retrieval
+
+↓
+
 LLM Processing
+
 ↓
+
 Generated Response
+
 ↓
+
 Chat History Storage
 
 ---
 
-# Technologies Used
+## Project Structure
 
-## Frontend
+```text
+VisionRAG/
+│
+├── app.py
+├── build_index.py
+├── requirements.txt
+├── Procfile
+│
+├── auth/
+│   ├── login.py
+│   ├── register.py
+│   └── admin.py
+│
+├── database/
+│
+├── multimodal/
+│   ├── image_ocr.py
+│   ├── pdf_reader.py
+│   ├── audio_transcriber.py
+│   ├── video_processor.py
+│   └── text_cleaner.py
+│
+├── rag/
+│   ├── pipeline.py
+│   ├── retriever.py
+│   ├── vector_store.py
+│   └── llm.py
+│
+├── utils/
+│
+├── voice/
+│
+└── .github/
+    └── workflows/
+        └── deploy.yml
+```
+
+---
+
+## Technologies Used
+
+### Frontend
 
 * Streamlit
 
-## Backend
+### Backend
 
 * Python
 
-## AI & NLP
+### AI & NLP
 
-* Large Language Models (LLMs)
+* LangChain
 * Retrieval-Augmented Generation (RAG)
-* Natural Language Processing (NLP)
+* Large Language Models (LLMs)
 
-## OCR
+### Vector Database
 
-* EasyOCR / Tesseract OCR
+* FAISS
 
-## Audio Processing
+### Embeddings
 
-* Speech Recognition
-* Whisper Model
+* Sentence Transformers
 
-## Video Processing
+### OCR
+
+* Tesseract OCR
+
+### Speech Processing
+
+* Whisper
+* SpeechRecognition
+
+### Video Processing
 
 * MoviePy
-* FFmpeg
+* OpenCV
 
-## Data Processing
+### Data Processing
 
-* Pandas
 * NumPy
+* Pandas
 
-## Authentication
+### Authentication
 
 * Custom Authentication Module
 
 ---
 
-# Modules Description
+## CI/CD Pipeline
 
-## Authentication Module
+This project implements Continuous Integration and Continuous Deployment using GitHub Actions and Render.
 
-Handles:
+### Workflow
 
-* User Registration
-* User Login
-* User Logout
-* Session Management
+1. Developer pushes code to GitHub
+2. GitHub Actions validates the build
+3. Dependencies are installed automatically
+4. Application is deployed automatically
+5. Updated version becomes available online
 
-Benefits:
+### Tools Used
 
-* Secure access control
-* Personalized user experience
-
----
-
-## PDF Processing Module
-
-Functions:
-
-* Upload PDF documents
-* Read document contents
-* Extract textual information
-
-Applications:
-
-* Research papers
-* Reports
-* Academic notes
-* Business documents
+* GitHub Actions
+* Render
+* GitHub Repository
 
 ---
 
-## OCR Module
+## Installation
 
-Functions:
+### Clone Repository
 
-* Image upload
-* Text extraction from images
-* Scanned document analysis
+```bash
+git clone <repository-url>
+cd VisionRAG
+```
 
-Applications:
+### Create Virtual Environment
 
-* Receipts
-* Screenshots
-* Handwritten notes
-* Printed documents
+```bash
+python -m venv venv
+```
 
----
+### Activate Environment
 
-## Audio Transcription Module
+```bash
+venv\Scripts\activate
+```
 
-Functions:
+### Install Dependencies
 
-* Audio upload
-* Speech recognition
-* Transcript generation
+```bash
+pip install -r requirements.txt
+```
 
-Applications:
+### Run Application
 
-* Lectures
-* Meetings
-* Interviews
-* Podcasts
-
----
-
-## Video Processing Module
-
-Functions:
-
-* Video upload
-* Audio extraction
-* Speech-to-text conversion
-* Content understanding
-
-Applications:
-
-* Educational videos
-* Recorded meetings
-* Presentations
-* Tutorials
+```bash
+streamlit run app.py
+```
 
 ---
 
-## Voice Query Module
+## Screenshots
 
-Functions:
+### Login Page
 
-* Microphone recording
-* Voice input processing
-* Speech-to-text conversion
+(Add Screenshot)
 
-Benefits:
+### Upload Interface
 
-* Hands-free interaction
-* Improved accessibility
-* Faster query input
+(Add Screenshot)
 
----
+### Multimodal Processing
 
-## Text Cleaning Module
+(Add Screenshot)
 
-Functions:
+### Chat Response
 
-* Remove noise
-* Normalize text
-* Improve retrieval quality
-
-Benefits:
-
-* Better context retrieval
-* More accurate answers
+(Add Screenshot)
 
 ---
 
-## RAG Module
+## Applications
 
-Retrieval-Augmented Generation (RAG) combines information retrieval with language generation.
-
-Working:
-
-1. Retrieve relevant content.
-2. Provide retrieved content as context.
-3. Generate answer using LLM.
-
-Advantages:
-
-* Improved factual accuracy.
-* Reduced hallucinations.
-* Uses uploaded content.
-* Domain-specific responses.
-
----
-
-# Why Multimodal RAG?
-
-Traditional RAG systems process only text documents.
-
-Multimodal RAG processes:
-
-* PDFs
-* Images
-* Audio
-* Videos
-* Voice Queries
-
-Benefits:
-
-* Better information coverage
-* Improved user experience
-* Real-world applicability
-* Enhanced document intelligence
-
----
-
-# Applications
-
-## Education
+### Education
 
 * Study material analysis
-* Lecture transcription
 * Research assistance
+* Lecture transcription
 
-## Healthcare
-
-* Medical report analysis
-* Voice transcription
-
-## Business
+### Business
 
 * Meeting summarization
-* Document management
+* Knowledge management
+* Document search
 
-## Legal
+### Healthcare
 
-* Contract analysis
+* Medical document analysis
+* Voice transcription
+
+### Legal
+
+* Contract understanding
 * Case document retrieval
 
-## Enterprise Knowledge Management
+### Enterprise Knowledge Management
 
-* Internal document search
-* Knowledge retrieval
-
----
-
-# Advantages
-
-* Supports multiple file formats.
-* Voice-enabled interaction.
-* Improved answer accuracy.
-* Reduced hallucinations.
-* Easy-to-use interface.
-* Scalable architecture.
-* Faster information retrieval.
-* User authentication support.
+* Internal document retrieval
+* Organizational search systems
 
 ---
 
-# Limitations
+## Advantages
 
-* OCR accuracy depends on image quality.
-* Audio transcription may be affected by background noise.
-* Large files may increase processing time.
-* Accuracy depends on retrieval quality.
+* Supports multiple file formats
+* Voice-enabled interaction
+* Improved answer accuracy
+* Reduced hallucinations
+* Easy-to-use interface
+* Scalable architecture
+* Efficient information retrieval
 
 ---
 
-# Future Enhancements
+## Limitations
 
-* Vector Database Integration (FAISS/ChromaDB)
-* Multi-language Support
-* Real-time Voice Conversations
-* Advanced Document Search
-* Cloud Deployment
-* Fine-Grained Access Control
+* OCR accuracy depends on image quality
+* Background noise may affect transcription
+* Large files increase processing time
+* Retrieval quality impacts answer accuracy
+
+---
+
+## Future Enhancements
+
+* ChromaDB Integration
+* Hybrid Search
+* Multi-Language Support
+* Real-Time Voice Conversations
 * Knowledge Graph Integration
-* Citation-Based Answers
+* Citation-Based Responses
+* Cloud-Native Deployment
 
 ---
 
-# Conclusion
+## Conclusion
 
-The Multimodal RAG System provides an intelligent solution for extracting, retrieving, and understanding information from diverse data sources including documents, images, audio recordings, videos, and voice inputs. By combining OCR, speech recognition, video processing, and Retrieval-Augmented Generation, the system delivers accurate, context-aware responses while reducing hallucinations. This makes it highly suitable for educational, business, research, and enterprise knowledge management applications.
-
-The project demonstrates the practical integration of Artificial Intelligence, Natural Language Processing, Information Retrieval, and Full-Stack Development into a unified intelligent assistant.
+VisionRAG demonstrates the integration of OCR, speech recognition, vector databases, retrieval systems, and Large Language Models into a unified multimodal AI assistant. The system enables intelligent retrieval and question answering from PDFs, images, audio, videos, and voice queries while maintaining high contextual relevance and reduced hallucinations.
