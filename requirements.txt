@@ -30,3 +30,4 @@ openai-whisper
 numpy
 
 groq
+easyocr
