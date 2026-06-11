@@ -1,10 +1,6 @@
 
-
 from rag.chunking import chunk_text
-
 from rag.vector_store import add_to_vector_db
-
-
 def clean_text(text):
 
     if not text:

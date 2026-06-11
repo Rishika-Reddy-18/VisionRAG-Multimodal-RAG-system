@@ -1,7 +1,7 @@
 import streamlit as st
 import os
 import uuid
-
+import base64
 from streamlit_mic_recorder import mic_recorder
 
 from auth.register import register_user
@@ -241,7 +241,7 @@ if st.session_state.show_upload_menu:
 
 
 # =========================
-# ✅ ADDED: FILE PREVIEW (NEW FEATURE)
+# ✅ SMALL FILE PREVIEW
 # =========================
 
 if uploaded_file:
@@ -249,18 +249,52 @@ if uploaded_file:
 
     file_ext = uploaded_file.name.lower().split(".")[-1]
 
+    # Small image preview
     if file_ext in ["png", "jpg", "jpeg"]:
-        st.image(uploaded_file, caption="🖼️ Image Preview")
+        st.image(
+            uploaded_file,
+            caption="🖼️ Preview",
+            width=200
+        )
 
+    # Small audio preview
     elif file_ext in ["mp3", "wav"]:
-        st.audio(uploaded_file)
+        with st.expander("🎵 Preview Audio"):
+            st.audio(uploaded_file)
 
+    # Small video preview
     elif file_ext in ["mp4", "avi", "mov"]:
-        st.video(uploaded_file)
+        with st.expander("🎥 Preview Video"):
+            st.video(uploaded_file)
 
+    # PDF Preview only when clicked
     elif file_ext == "pdf":
-        st.success("📄 PDF uploaded successfully (preview not supported)")
+        with st.expander("📄 View PDF Preview"):
 
+            pdf_bytes = uploaded_file.read()
+
+            st.download_button(
+                "📥 Download PDF",
+                data=pdf_bytes,
+                file_name=uploaded_file.name,
+                mime="application/pdf"
+            )
+
+            pdf_base64 = base64.b64encode(pdf_bytes).decode("utf-8")
+
+            pdf_display = f"""
+            <iframe
+                src="data:application/pdf;base64,{pdf_base64}"
+                width="300"
+                height="400"
+                type="application/pdf">
+            </iframe>
+            """
+
+            st.markdown(
+                pdf_display,
+                unsafe_allow_html=True
+            )
 
 # =========================
 # FILE PROCESSING
